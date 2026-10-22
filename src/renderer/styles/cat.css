@@ -1,0 +1,420 @@
+/* Cute Small Thin Pixel Black Cat Styles */
+:root {
+  --color-black-main: #121215;
+  --color-black-dark: #08080A;
+  --color-black-highlight: #282830;
+  --color-black-soft: #3E3E4A;
+  --color-eye-emerald: #10B981;
+  --color-eye-light: #34D399;
+  --color-eye-gold: #FBBF24;
+  --color-pink-nose: #FB7185;
+  --color-pink-ear: #FDA4AF;
+  --color-pink-blush: #F43F5E;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent !important;
+  font-family: 'Nunito', monospace, sans-serif;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.cat-desktop-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: grab;
+  background: transparent;
+}
+
+.cat-desktop-wrapper:active {
+  cursor: grabbing;
+}
+
+/* Cute Pixel Tasks Button */
+.tasks-floating-btn {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: #18181B;
+  color: #F97316;
+  border: 1.5px solid #F97316;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 10.5px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  transition: all 0.15s ease;
+  z-index: 70;
+  outline: none;
+}
+
+.tasks-floating-btn:hover {
+  background: #F97316;
+  color: #FFFFFF;
+  border-color: #EA580C;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.7);
+}
+
+.tasks-floating-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.7);
+}
+
+/* Pixel Speech Bubble */
+.cat-bubble {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  background: #18181B;
+  color: #F4F4F5;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  border: 1.5px solid #3F3F46;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  animation: floatBubble 3s ease-in-out infinite;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.cat-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 14px;
+  width: 6px;
+  height: 4px;
+  background: #18181B;
+  border-right: 1.5px solid #3F3F46;
+  border-bottom: 1.5px solid #3F3F46;
+}
+
+@keyframes floatBubble {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Thin Pixel Cat Container */
+.pixel-cat-container {
+  width: 124px;
+  height: 120px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.pixel-cat-container:hover {
+  transform: scale(1.08);
+}
+
+.pixel-cat-container:active {
+  transform: scale(0.96);
+}
+
+/* Sitting / Idle Gentle Breath */
+.pixel-breathe-idle {
+  animation: pixelBreathe 3.5s steps(4) infinite;
+  transform-origin: center bottom;
+}
+
+@keyframes pixelBreathe {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Thin Tail Sway */
+.pixel-tail-sway {
+  animation: pixelTailWag 2.8s steps(4) infinite;
+  transform-origin: 90px 88px;
+}
+
+@keyframes pixelTailWag {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+}
+
+/* Happy Bounce */
+.pixel-happy-bounce {
+  animation: pixelHappy 0.6s steps(3) infinite alternate;
+}
+
+@keyframes pixelHappy {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Sleepy Slow Breath */
+.pixel-sleepy-breathe {
+  animation: pixelSleep 4s steps(3) infinite;
+  transform-origin: center bottom;
+}
+
+@keyframes pixelSleep {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Floating Sleep Zzz */
+.zzz-particle {
+  position: absolute;
+  font-family: monospace, sans-serif;
+  font-weight: 800;
+  color: #A78BFA;
+  opacity: 0;
+  pointer-events: none;
+  animation: pixelZzzFloat 2.8s steps(4) infinite;
+}
+
+.zzz-1 {
+  font-size: 11px;
+  top: 16px;
+  right: 18px;
+  animation-delay: 0s;
+}
+
+.zzz-2 {
+  font-size: 13px;
+  top: 6px;
+  right: 10px;
+  animation-delay: 0.9s;
+}
+
+.zzz-3 {
+  font-size: 16px;
+  top: -4px;
+  right: 2px;
+  animation-delay: 1.8s;
+}
+
+@keyframes pixelZzzFloat {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(8px, -16px);
+  }
+}
+
+/* Floating Pixel Hearts */
+.heart-particle {
+  position: absolute;
+  color: #FB7185;
+  opacity: 0;
+  pointer-events: none;
+  animation: pixelHeartFloat 1.8s steps(4) infinite;
+}
+
+.heart-1 {
+  font-size: 13px;
+  top: 12px;
+  left: 12px;
+  animation-delay: 0.2s;
+}
+
+.heart-2 {
+  font-size: 15px;
+  top: 6px;
+  right: 12px;
+  animation-delay: 0.8s;
+}
+
+@keyframes pixelHeartFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Celebrating Sparkles */
+.celebrate-sparkle {
+  position: absolute;
+  pointer-events: none;
+  animation: pixelSparkle 1.2s steps(2) infinite;
+}
+
+@keyframes pixelSparkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* ======================================================== */
+/* 4-LEGGED PIXEL WALKING ANIMATIONS                        */
+/* ======================================================== */
+.pixel-walk-4legs-wrapper {
+  animation: pixelWalkBob 0.28s steps(2) infinite alternate;
+  transform-origin: center bottom;
+}
+
+@keyframes pixelWalkBob {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+.pixel-walk-fl {
+  animation: pixelLegA 0.28s steps(2) infinite alternate;
+  transform-origin: 38px 74px;
+}
+
+.pixel-walk-fr {
+  animation: pixelLegB 0.28s steps(2) infinite alternate;
+  transform-origin: 50px 74px;
+}
+
+.pixel-walk-bl {
+  animation: pixelLegB 0.28s steps(2) infinite alternate;
+  transform-origin: 78px 74px;
+}
+
+.pixel-walk-br {
+  animation: pixelLegA 0.28s steps(2) infinite alternate;
+  transform-origin: 90px 74px;
+}
+
+@keyframes pixelLegA {
+  0% {
+    transform: rotate(-18deg);
+  }
+  100% {
+    transform: rotate(18deg);
+  }
+}
+
+@keyframes pixelLegB {
+  0% {
+    transform: rotate(18deg);
+  }
+  100% {
+    transform: rotate(-18deg);
+  }
+}
+
+.pixel-walk-tail {
+  animation: pixelWalkTail 0.5s steps(2) infinite alternate;
+  transform-origin: 96px 58px;
+}
+
+@keyframes pixelWalkTail {
+  0% {
+    transform: rotate(-12deg);
+  }
+  100% {
+    transform: rotate(16deg);
+  }
+}
+
+/* ======================================================== */
+/* ROLLING ON ITS BACK (Real Cat Belly Rubs)               */
+/* ======================================================== */
+.pixel-roll-back-wrapper {
+  animation: pixelRollRock 0.6s steps(2) infinite alternate;
+  transform-origin: 60px 65px;
+}
+
+@keyframes pixelRollRock {
+  0% {
+    transform: rotate(-12deg) translateY(2px);
+  }
+  100% {
+    transform: rotate(12deg) translateY(-2px);
+  }
+}
+
+.pixel-roll-paw-fl {
+  animation: pixelPawWiggle 0.3s steps(2) infinite alternate;
+  transform-origin: 46px 60px;
+}
+
+.pixel-roll-paw-fr {
+  animation: pixelPawWiggle 0.3s steps(2) 0.15s infinite alternate;
+  transform-origin: 58px 60px;
+}
+
+.pixel-roll-paw-bl {
+  animation: pixelPawWiggle 0.3s steps(2) 0.08s infinite alternate;
+  transform-origin: 74px 60px;
+}
+
+.pixel-roll-paw-br {
+  animation: pixelPawWiggle 0.3s steps(2) 0.22s infinite alternate;
+  transform-origin: 86px 60px;
+}
+
+@keyframes pixelPawWiggle {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}

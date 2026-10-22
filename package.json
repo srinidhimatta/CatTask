@@ -1,0 +1,43 @@
+{
+  "name": "cattask",
+  "version": "1.0.0",
+  "description": "CatTask — A Cute Desktop Cat To-Do Companion",
+  "main": "dist/main/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"vite\" \"cross-env WAIT_FOR_VITE=1 node scripts/dev-electron.js\"",
+    "build:renderer": "vite build",
+    "build:electron": "tsc -p tsconfig.electron.json && node scripts/copy-preload.js",
+    "build": "npm run build:renderer && npm run build:electron",
+    "start": "electron dist/main/main.js",
+    "test": "node scripts/test-storage.js && node scripts/test-electron-launch.js && electron scripts/test-click-panel.js",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "cattask",
+    "desktop-pet",
+    "todo",
+    "productivity",
+    "cat-companion",
+    "electron",
+    "react"
+  ],
+  "author": "Google Antigravity & CatTask Team",
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^1.16.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^33.2.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  }
+}
