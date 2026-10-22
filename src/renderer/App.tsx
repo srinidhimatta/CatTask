@@ -18,15 +18,30 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Listen to web adapter panel toggles
+  // Listen to web adapter panel toggles and cat position
   useEffect(() => {
     const api = window.catApi as any;
-    if (api && api.onPanelVisibilityChanged) {
-      const unsub = api.onPanelVisibilityChanged((isOpen: boolean) => {
-        setIsWebPanelOpen(isOpen);
-      });
-      return unsub;
+    if (!api) return;
+
+    const unsubs: Array<() => void> = [];
+
+    if (api.onPanelVisibilityChanged) {
+      unsubs.push(
+        api.onPanelVisibilityChanged((isOpen: boolean) => {
+          setIsWebPanelOpen(isOpen);
+        })
+      );
     }
+
+    if (api.onCatPositionChanged) {
+      unsubs.push(
+        api.onCatPositionChanged((pos: { x: number; y: number }) => {
+          setWebCatPos(pos);
+        })
+      );
+    }
+
+    return () => unsubs.forEach((u) => u());
   }, []);
 
   // Specific Electron Windows (or explicit hash views)
@@ -57,10 +72,12 @@ export const App: React.FC = () => {
 
   const handleCanvasMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDraggingCat) return;
-    setWebCatPos({
+    const newPos = {
       x: Math.max(20, Math.min(window.innerWidth - 160, e.clientX - 70)),
       y: Math.max(80, Math.min(window.innerHeight - 160, e.clientY - 70)),
-    });
+    };
+    setWebCatPos(newPos);
+    (window.catApi as any)?.setCatPosition?.(newPos);
   };
 
   return (

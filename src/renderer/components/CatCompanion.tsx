@@ -92,14 +92,14 @@ export const CatCompanion: React.FC<CatCompanionProps> = ({ initialMood = 'idle'
     }
   }, [mood, tasksData, isHovered]);
 
-  // Walks after every 5 minutes (300,000 ms) as requested
+  // Walks after every 5 seconds (5,000 ms) as requested
   useEffect(() => {
-    const FIVE_MINUTES_MS = 5 * 60 * 1000;
+    const FIVE_SECONDS_MS = 5 * 1000;
     const walkTimer = setInterval(() => {
       if (mood === 'idle' && !isMouseDownRef.current && !isHovered) {
         window.catApi?.walkCat?.();
       }
-    }, FIVE_MINUTES_MS);
+    }, FIVE_SECONDS_MS);
 
     return () => clearInterval(walkTimer);
   }, [mood, isHovered]);

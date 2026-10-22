@@ -276,17 +276,38 @@ class WebCatApiAdapter implements CatWindowApi {
     this.notifyMoodChanged(mood);
   }
 
+  public setCatPosition(pos: { x: number; y: number }): void {
+    this.catPos = { ...pos };
+  }
+
+  private walkDirection = 1;
+
   public walkCat(): void {
+    if (this.currentMood === 'walking') return;
     this.notifyMoodChanged('walking');
     sound.playMeow();
-    // Walk for 6 seconds, then roll playfully for 4 seconds, then idle
-    setTimeout(() => {
-      this.notifyMoodChanged('rolling');
-      sound.playPurr();
-      setTimeout(() => {
-        this.notifyMoodChanged('idle');
-      }, 4000);
-    }, 6000);
+
+    let step = 0;
+    const totalSteps = 24;
+    const interval = setInterval(() => {
+      step++;
+      if (typeof window !== 'undefined') {
+        const maxX = Math.max(300, window.innerWidth - 180);
+        if (this.catPos.x > maxX) {
+          this.walkDirection = -1;
+        } else if (this.catPos.x < 30) {
+          this.walkDirection = 1;
+        }
+      }
+      this.moveCatWindow(this.walkDirection * 4, 0);
+
+      if (step >= totalSteps || this.currentMood !== 'walking') {
+        clearInterval(interval);
+        if (this.currentMood === 'walking') {
+          this.notifyMoodChanged('idle');
+        }
+      }
+    }, 75);
   }
 }
 
